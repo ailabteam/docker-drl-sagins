@@ -1,80 +1,105 @@
-# Môi trường Nghiên cứu Tái tạo cho DRL/SAGINs (GPU & Docker)
+### **How to Deploy**
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/haodpsut/drl-sagin-env)](https://hub.docker.com/r/haodpsut/drl-sagin-env)
-
-Đây là một môi trường phát triển được đóng gói bằng Docker, xây dựng cẩn thận để phục vụ cho các nghiên cứu khoa học yêu cầu tính toán hiệu năng cao (GPU-accelerated) và **tính tái tạo tuyệt đối (full reproducibility)**.
-
-Môi trường này được thiết kế đặc biệt cho các lĩnh vực:
-*   Học tăng cường sâu (Deep Reinforcement Learning - DRL)
-*   Mạng tích hợp Không gian-Mặt đất-Trên không (SAGINs)
-*   Hệ thống máy bay không người lái (UAV) và Vệ tinh
-*   Học tập Liên kết (Federated Learning)
-
-Mục tiêu chính là giải quyết triệt để vấn đề "Nó chạy trên máy tôi!" ("It works on my machine!") và cung cấp một nền tảng vững chắc để bất kỳ ai cũng có thể tái tạo lại các kết quả thí nghiệm trong các bài báo khoa học.
+1.  **Open a terminal and navigate to your project directory:**
+    ```bash
+    cd ~/hao/git/working/docker-drl-sagins
+    ```
+2.  **Create or open the `README.md` file:**
+    ```bash
+    nano README.md
+    ```
+3.  **Copy the entire content below and paste it into the open `README.md` file.**
+4.  **Save and close the file:** Press `Ctrl+X`, then `Y`, then `Enter`.
+5.  **Commit and push the file to GitHub:**
+    ```bash
+    git add README.md
+    git commit -m "docs: Create detailed English README"
+    git push
+    ```
 
 ---
 
-## 🚀 Nó có gì? (Core Components)
+### **Detailed Content for `README.md` (English Version)**
 
-Image Docker này được xây dựng trên một nền tảng vững chắc và bao gồm các thư viện phổ biến nhất, đã được kiểm tra tương thích với nhau.
+````markdown
+# Reproducible Research Environment for DRL/SAGINs (GPU & Docker)
 
-| Thể loại              | Công nghệ / Thư viện                                 | Phiên bản / Ghi chú                                |
+[![Docker Pulls](https://img.shields.io/docker/pulls/haodpsut/drl-sagin-env?style=flat-square)](https://hub.docker.com/r/haodpsut/drl-sagin-env)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+
+This is a meticulously crafted, containerized development environment designed for scientific research that demands high-performance computing (GPU-accelerated) and **absolute reproducibility**.
+
+This environment is specifically tailored for research in fields such as:
+*   Deep Reinforcement Learning (DRL)
+*   Space-Air-Ground Integrated Networks (SAGINs)
+*   Unmanned Aerial Vehicle (UAV) and Satellite Systems
+*   Federated Learning (FL)
+
+The primary goal is to definitively solve the "It works on my machine!" problem and provide a stable foundation for anyone to reproduce the experimental results presented in scientific papers.
+
+---
+
+## 🚀 What's Inside? (Core Components)
+
+This Docker image is built on a solid foundation and includes a curated set of popular libraries, tested for compatibility.
+
+| Category              | Technology / Library                                 | Version / Notes                                    |
 | --------------------- | ---------------------------------------------------- | -------------------------------------------------- |
-| **Nền tảng**          | Ubuntu 22.04                                         | Hệ điều hành ổn định.                              |
-| **GPU Support**       | CUDA 12.1.1                                          | Tương thích rộng rãi với các GPU NVIDIA hiện đại.    |
-| **Quản lý môi trường** | Conda (thông qua Miniconda)                          | Quản lý thư viện Python một cách cô lập và hiệu quả. |
-| **Ngôn ngữ**          | Python                                               | `3.10`                                             |
-| **AI/ML Framework**   | PyTorch, TorchVision, TorchAudio                     | Phiên bản được build với `pytorch-cuda=12.1`.      |
-| **DRL Framework**     | Gymnasium, Stable-Baselines3                         | Bộ công cụ tiêu chuẩn cho nghiên cứu DRL.           |
-| **Tính toán & Dữ liệu** | NumPy, Pandas, SciPy, Scikit-learn                   | Các thư viện cốt lõi của khoa học dữ liệu.         |
-| **Trực quan hóa**      | Matplotlib, Seaborn                                  | Vẽ và lưu biểu đồ kết quả thí nghiệm.              |
-| **Xử lý Ảnh**         | OpenCV                                               | Hữu ích cho các bài toán xử lý ảnh từ UAV/vệ tinh. |
+| **Base OS**           | Ubuntu 22.04                                         | A stable and widely-used operating system.         |
+| **GPU Support**       | CUDA 12.1.1                                          | Broadly compatible with modern NVIDIA GPUs.        |
+| **Environment Mgmt**  | Conda (via Miniconda)                                | Manages Python libraries in an isolated, robust way. |
+| **Language**          | Python                                               | `3.10`                                             |
+| **AI/ML Framework**   | PyTorch, TorchVision, TorchAudio                     | Built with `pytorch-cuda=12.1` for GPU support.    |
+| **DRL Framework**     | Gymnasium, Stable-Baselines3                         | The standard toolkits for modern DRL research.     |
+| **Compute & Data**    | NumPy, Pandas, SciPy, Scikit-learn                   | The core libraries of the data science stack.      |
+| **Visualization**     | Matplotlib, Seaborn                                  | For plotting and saving experimental results.      |
+| **Image Processing**  | OpenCV                                               | Useful for tasks involving UAV/satellite imagery.  |
 
 ---
 
-## ⚙️ Nó hoạt động thế nào? (The Workflow)
+## ⚙️ How Does It Work? (The Workflow)
 
-Ý tưởng cốt lõi là tách biệt môi trường viết code và môi trường thực thi code.
+The core idea is to decouple the code editing environment from the code execution environment.
 
-1.  **Bạn viết code trên máy Host:** Bạn sử dụng các công cụ yêu thích của mình (VS Code, PyCharm, etc.) trên máy tính cá nhân hoặc server để viết và chỉnh sửa các file Python.
-2.  **Container Docker là "phòng thí nghiệm":** Container này chứa tất cả các thư viện phức tạp và được cấu hình để "nhìn thấy" GPU.
-3.  **Cơ chế ánh xạ thư mục (`-v`):** Khi bạn khởi động container, bạn "ánh xạ" thư mục code của bạn trên máy Host vào thư mục `/workspace` bên trong container. Mọi thay đổi bạn thực hiện trên máy Host sẽ được phản ánh ngay lập tức bên trong container, và ngược lại.
-4.  **Chạy thí nghiệm:** Bạn thực thi các lệnh `python` bên trong container. Code sẽ được chạy với toàn bộ sức mạnh của GPU và các thư viện đã được cài đặt sẵn.
-5.  **Kết quả xuất hiện trên máy Host:** Khi code của bạn tạo ra các file kết quả (biểu đồ `.png`, log `.csv`) trong thư mục `/workspace`, các file này cũng sẽ ngay lập tức xuất hiện trong thư mục dự án trên máy Host của bạn.
+1.  **You write code on your Host machine:** Use your favorite tools (VS Code, PyCharm, etc.) on your local machine or server to write and edit Python files.
+2.  **The Docker Container is your "Lab":** This container holds all the complex library dependencies and is pre-configured to access the GPU.
+3.  **Volume Mounting (`-v` flag) is the Bridge:** When you launch the container, you "mount" your project directory from the Host into the `/workspace` directory inside the container. Any change you make on the Host is instantly reflected inside the container, and vice-versa.
+4.  **You run experiments inside the Container:** Execute `python` commands inside the container's terminal. Your code runs with the full power of the GPU and the pre-installed libraries.
+5.  **Results appear on your Host machine:** When your code generates result files (e.g., `.png` plots, `.csv` logs) inside the `/workspace` directory, these files instantly appear in your project folder on the Host.
 
-**Quy trình này giúp bạn có được những lợi ích tốt nhất của cả hai thế giới: sự tiện lợi của việc code trên máy Host và sức mạnh, tính nhất quán của môi trường Docker.**
+**This workflow gives you the best of both worlds: the convenience of coding on your familiar Host system and the power and consistency of a dedicated Docker environment.**
 
 ---
 
-## ⚡ Bắt đầu Nhanh (Quick Start)
+## ⚡ Quick Start Guide
 
-Làm theo các bước sau để thiết lập và chạy một thí nghiệm ví dụ.
+Follow these steps to set up the environment and run a sample experiment.
 
-### Yêu cầu
+### Prerequisites
 
-Máy của bạn phải được cài đặt:
-1.  [NVIDIA Driver](https://www.nvidia.com/Download/index.aspx) phiên bản mới.
+Your machine must have the following installed:
+1.  A recent [NVIDIA Driver](https://www.nvidia.com/Download/index.aspx).
 2.  [Docker Engine](https://docs.docker.com/engine/install/).
 3.  [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html).
 
-### Bước 1: Kéo Image từ Docker Hub
+### Step 1: Pull the Image from Docker Hub
 
-Mở terminal và chạy lệnh sau để tải image về máy của bạn:
+Open a terminal and run the following command to download the Docker image:
 ```bash
 docker pull haodpsut/drl-sagin-env:latest
 ```
 
-### Bước 2: Chuẩn bị Thư mục Dự án
+### Step 2: Prepare Your Project Directory
 
-Nếu bạn chưa có, hãy clone repository này (hoặc tạo một thư mục dự án mới với cấu trúc tương tự).
+If you haven't already, clone this repository (or create a new project directory with a similar structure).
 ```bash
 git clone https://github.com/ailabteam/docker-drl-sagins.git
 cd docker-drl-sagins
 ```
 
-### Bước 3: Khởi chạy Container
+### Step 3: Launch the Container
 
-Từ bên trong thư mục dự án (`docker-drl-sagins`), chạy lệnh sau. Lệnh này sẽ khởi động container và ánh xạ thư mục hiện tại của bạn vào đó.
+From within your project directory (`docker-drl-sagins`), run the command below. This will start the container and mount your current directory into it.
 
 ```bash
 docker run -it --rm \
@@ -82,39 +107,39 @@ docker run -it --rm \
   -v "$(pwd)":/workspace \
   haodpsut/drl-sagin-env:latest
 ```
-*   `--gpus all`: **Bắt buộc!** Cấp quyền cho container sử dụng GPU.
-*   `-v "$(pwd)":/workspace`: Ánh xạ thư mục hiện tại vào `/workspace` trong container.
+*   `--gpus all`: **Required!** Grants the container access to all available GPUs.
+*   `-v "$(pwd)":/workspace`: Mounts the current host directory into `/workspace` inside the container.
 
-Sau khi chạy lệnh, dấu nhắc terminal của bạn sẽ thay đổi, cho biết bạn đang ở bên trong container.
+After running the command, your terminal prompt will change, indicating you are now inside the container.
 
-### Bước 4: Chạy một Thí nghiệm Ví dụ
+### Step 4: Run a Sample Experiment
 
-Bên trong container, hãy chạy script `train.py` mẫu để xác nhận mọi thứ hoạt động:
+Inside the container, execute the sample `train.py` script to confirm that everything is working:
 ```bash
 python src/train.py
 ```
-Bạn sẽ thấy các dòng log in ra màn hình, thông báo về quá trình huấn luyện mô phỏng và các file kết quả được lưu.
+You will see log messages printed to the screen, detailing the simulated training process and the file paths for the saved results.
 
-### Bước 5: Kiểm tra Kết quả
+### Step 5: Check the Results
 
-1.  Sau khi script chạy xong, thoát khỏi container bằng lệnh:
+1.  Once the script has finished, exit the container by typing:
     ```bash
     exit
     ```
-2.  Bây giờ, trên máy Host của bạn, hãy kiểm tra thư mục `results`:
+2.  Now, back on your Host machine, inspect the `results` directory:
     ```bash
     ls -R results
     ```
-    Bạn sẽ thấy một thư mục mới được tạo theo dạng `YYYY-MM-DD_HH-MM-SS`, bên trong chứa các file `reward_plot.png` và `rewards_log.csv`. Bạn có thể mở các file này để xem kết quả.
+    You will see a new directory named with a timestamp (e.g., `YYYY-MM-DD_HH-MM-SS`), which contains `reward_plot.png` and `rewards_log.csv`. You can open these files directly to view your results.
 
 ---
 
-## 🔧 Tùy chỉnh và Build lại từ Nguồn
+## 🔧 Customizing and Building from Source
 
-Nếu bạn muốn thêm thư viện hoặc thay đổi phiên bản:
+If you need to add more libraries or change existing versions:
 
-1.  Chỉnh sửa file `environment.yml` để thêm hoặc xóa các gói `conda`.
-2.  Build lại image với tag của riêng bạn:
+1.  Modify the `environment.yml` file to add or remove Conda packages.
+2.  Rebuild the image with your own custom tag:
     ```bash
     docker build -t your-dockerhub-username/my-custom-env:latest .
     ```
