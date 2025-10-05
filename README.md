@@ -1,27 +1,3 @@
-### **How to Deploy**
-
-1.  **Open a terminal and navigate to your project directory:**
-    ```bash
-    cd ~/hao/git/working/docker-drl-sagins
-    ```
-2.  **Create or open the `README.md` file:**
-    ```bash
-    nano README.md
-    ```
-3.  **Copy the entire content below and paste it into the open `README.md` file.**
-4.  **Save and close the file:** Press `Ctrl+X`, then `Y`, then `Enter`.
-5.  **Commit and push the file to GitHub:**
-    ```bash
-    git add README.md
-    git commit -m "docs: Create detailed English README"
-    git push
-    ```
-
----
-
-### **Detailed Content for `README.md` (English Version)**
-
-````markdown
 # Reproducible Research Environment for DRL/SAGINs (GPU & Docker)
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/haodpsut/drl-sagin-env?style=flat-square)](https://hub.docker.com/r/haodpsut/drl-sagin-env)
