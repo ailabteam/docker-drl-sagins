@@ -1,0 +1,41 @@
+# Tên của môi trường conda
+name: drl_env
+
+# Các kênh tìm kiếm thư viện, ưu tiên từ trên xuống
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+
+# Danh sách các thư viện cần cài đặt
+dependencies:
+  # Nền tảng
+  - python=3.10
+  - pip
+
+  # Tính toán khoa học & Dữ liệu
+  - numpy
+  - pandas
+  - scipy
+  - scikit-learn
+  - h5py
+
+  # PyTorch và CUDA (Tương thích với RTX 4090)
+  - pytorch
+  - torchvision
+  - torchaudio
+  - pytorch-cuda=12.1
+
+  # Deep Reinforcement Learning
+  - gymnasium
+  - stable-baselines3
+
+  # Trực quan hóa & Xử lý ảnh
+  - matplotlib
+  - seaborn
+  - opencv
+
+  # Công cụ phát triển & Tiện ích
+  - jupyterlab
+  - tqdm
